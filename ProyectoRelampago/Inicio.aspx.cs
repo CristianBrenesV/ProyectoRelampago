@@ -11,7 +11,7 @@ namespace ProyectoRelampago
 {
     public partial class Inicio : System.Web.UI.Page
     {
-        // Obtener el connectionString desde web.config
+
         private string connectionString = ConfigurationManager.ConnectionStrings["Relampago"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,77 +26,66 @@ namespace ProyectoRelampago
 
         private void CargarFiltros()
         {
-            // Cargar filtro Eje Estratégico
             ddlEje.DataSource = ObtenerDatosFiltro("SELECT idEje, nombreEjeEstrategico FROM Relampago.eje_estrategico");
             ddlEje.DataTextField = "nombreEjeEstrategico";
             ddlEje.DataValueField = "idEje";
             ddlEje.DataBind();
             ddlEje.Items.Insert(0, new ListItem("Seleccionar Eje", ""));
 
-            // Cargar filtro Area
             ddlArea.DataSource = ObtenerDatosFiltro("SELECT idArea, nombreArea FROM Relampago.area");
             ddlArea.DataTextField = "nombreArea";
             ddlArea.DataValueField = "idArea";
             ddlArea.DataBind();
             ddlArea.Items.Insert(0, new ListItem("Seleccionar Área", ""));
 
-            // Cargar filtro Dependencia
             ddlDependencia.DataSource = ObtenerDatosFiltro("SELECT idDependencia, nombreDependencia FROM Relampago.dependencia");
             ddlDependencia.DataTextField = "nombreDependencia";
             ddlDependencia.DataValueField = "idDependencia";
             ddlDependencia.DataBind();
             ddlDependencia.Items.Insert(0, new ListItem("Seleccionar Dependencia", ""));
 
-            // Cargar filtro Macroproceso
             ddlMacroproceso.DataSource = ObtenerDatosFiltro("SELECT idMacroproceso, nombreMacroproceso FROM Relampago.macroproceso");
             ddlMacroproceso.DataTextField = "nombreMacroproceso";
             ddlMacroproceso.DataValueField = "idMacroproceso";
             ddlMacroproceso.DataBind();
             ddlMacroproceso.Items.Insert(0, new ListItem("Seleccionar Macroproceso", ""));
 
-            // Cargar filtro Tipo Procedimiento
             ddlTipoProcedimiento.DataSource = ObtenerDatosFiltro("SELECT DISTINCT tipoProcedimiento FROM Relampago.Procedimientos");
             ddlTipoProcedimiento.DataTextField = "tipoProcedimiento";
             ddlTipoProcedimiento.DataValueField = "tipoProcedimiento";
             ddlTipoProcedimiento.DataBind();
             ddlTipoProcedimiento.Items.Insert(0, new ListItem("Seleccionar Tipo Procedimiento", ""));
 
-            // Cargar filtro Estado
             ddlEstado.DataSource = ObtenerDatosFiltro("SELECT DISTINCT estado FROM Relampago.Procedimientos");
             ddlEstado.DataTextField = "estado";
             ddlEstado.DataValueField = "estado";
             ddlEstado.DataBind();
             ddlEstado.Items.Insert(0, new ListItem("Seleccionar Estado", ""));
 
-            // Cargar filtro Teletrabajado
             ddlTeletrabajado.DataSource = ObtenerDatosFiltro("SELECT DISTINCT teletrabajado FROM Relampago.Procedimientos");
             ddlTeletrabajado.DataTextField = "teletrabajado";
             ddlTeletrabajado.DataValueField = "teletrabajado";
             ddlTeletrabajado.DataBind();
             ddlTeletrabajado.Items.Insert(0, new ListItem("Seleccionar Teletrabajado", ""));
 
-            // Cargar filtro Año Actualización
             ddlAñoActualizacion.DataSource = ObtenerDatosFiltro("SELECT DISTINCT anioActualizacion FROM Relampago.Procedimientos");
             ddlAñoActualizacion.DataTextField = "anioActualizacion";
             ddlAñoActualizacion.DataValueField = "anioActualizacion";
             ddlAñoActualizacion.DataBind();
             ddlAñoActualizacion.Items.Insert(0, new ListItem("Seleccionar Año", ""));
 
-            // Cargar filtro Eje Estratégico (nuevo)
             ddlEjeEstrategico.DataSource = ObtenerDatosFiltro("SELECT DISTINCT nombreEjeEstrategico FROM Relampago.eje_estrategico");
             ddlEjeEstrategico.DataTextField = "nombreEjeEstrategico";
             ddlEjeEstrategico.DataValueField = "nombreEjeEstrategico";
             ddlEjeEstrategico.DataBind();
             ddlEjeEstrategico.Items.Insert(0, new ListItem("Seleccionar Eje Estratégico", ""));
 
-            // Cargar filtro Apoyo Tecnológico (nuevo)
             ddlApoyoTecnologico.DataSource = ObtenerDatosFiltro("SELECT DISTINCT apoyoTecnologico FROM Relampago.Procedimientos");
             ddlApoyoTecnologico.DataTextField = "apoyoTecnologico";
             ddlApoyoTecnologico.DataValueField = "apoyoTecnologico";
             ddlApoyoTecnologico.DataBind();
             ddlApoyoTecnologico.Items.Insert(0, new ListItem("Seleccionar Apoyo Tecnológico", ""));
         }
-
 
         private void ActualizarConteos()
         {
@@ -118,7 +107,6 @@ namespace ProyectoRelampago
             int conteo = 0;
             string query = "";
 
-            // Aquí generamos una consulta dinámica basada en la categoría seleccionada
             switch (categoria)
             {
                 case "estado":
@@ -161,12 +149,10 @@ namespace ProyectoRelampago
                     return 0;
             }
 
-            // Ejecutar la consulta y devolver el conteo
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                // Agregar solo el parámetro correspondiente según la categoría seleccionada
                 switch (categoria)
                 {
                     case "estado":
@@ -207,20 +193,17 @@ namespace ProyectoRelampago
                 }
 
                 conn.Open();
-                conteo = (int)cmd.ExecuteScalar(); // Ejecuta el query y obtiene el conteo
+                conteo = (int)cmd.ExecuteScalar(); 
                 conn.Close();
             }
 
             return conteo;
         }
 
-
-
-        // Método que se llama cuando cambia el filtro (puedes agregar esta lógica en los eventos de selección de cada DropDown)
         protected void Filtro_Cambiado(object sender, EventArgs e)
         {
             ActualizarConteos();
-            CargarGrid(); // Recargar el GridView con los nuevos filtros
+            CargarGrid(); 
         }
 
         private DataTable ObtenerDatosFiltro(string query)
@@ -236,7 +219,6 @@ namespace ProyectoRelampago
 
         private void CargarGrid()
         {
-            // Construir la consulta SQL
             string query = "SELECT Procedimientos.idEje, area.nombreArea, dependencia.nombreDependencia, " +
                            "Procedimientos.tipoProcedimiento, Procedimientos.estado, Procedimientos.teletrabajado, " +
                            "macroproceso.nombreMacroproceso, eje_estrategico.nombreEjeEstrategico, Procedimientos.tipoDocumento, " +
@@ -247,7 +229,6 @@ namespace ProyectoRelampago
                            "INNER JOIN Relampago.eje_estrategico ON eje_estrategico.idEje = Procedimientos.idEje " +
                            "INNER JOIN Relampago.macroproceso ON macroproceso.idMacroproceso = Procedimientos.idMacroproceso";
 
-            // Filtros adicionales según lo que el usuario seleccione
             if (!string.IsNullOrEmpty(ddlEje.SelectedValue))
                 query += " AND Procedimientos.idEje = @Eje";
 
@@ -272,7 +253,6 @@ namespace ProyectoRelampago
             if (!string.IsNullOrEmpty(ddlAñoActualizacion.SelectedValue))
                 query += " AND Procedimientos.anioActualizacion = @AñoActualizacion";
 
-            // Ejecutar la consulta y llenar el GridView
             SqlDataAdapter da = new SqlDataAdapter(query, connectionString);
             da.SelectCommand.Parameters.AddWithValue("@Eje", ddlEje.SelectedValue);
             da.SelectCommand.Parameters.AddWithValue("@Area", ddlArea.SelectedValue);
@@ -286,15 +266,12 @@ namespace ProyectoRelampago
             DataTable dt = new DataTable();
             da.Fill(dt);
 
-            // Enlazar el GridView con los datos
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
 
-        // Manejadores de eventos
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            // Cambiar la página
             GridView1.PageIndex = e.NewPageIndex;
             CargarGrid();
         }
@@ -304,7 +281,6 @@ namespace ProyectoRelampago
             DataTable dt = (DataTable)GridView1.DataSource;
             if (dt != null)
             {
-                // Ordenar los datos
                 DataView dv = dt.DefaultView;
                 dv.Sort = e.SortExpression + " " + (e.SortDirection == SortDirection.Ascending ? "ASC" : "DESC");
                 GridView1.DataSource = dv;
