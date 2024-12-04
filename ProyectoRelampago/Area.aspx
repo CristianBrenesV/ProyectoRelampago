@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Gestión de Áreas</title>
+         <link href="Content/Areas.css" rel="stylesheet" type="text/css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -22,6 +22,18 @@
         </div>
     </nav>
     <form id="form1" runat="server">
+            <div>
+                <h3>Agregar Área</h3>
+                <label>IdArea:</label>
+                <asp:TextBox ID="txtIdArea" runat="server"></asp:TextBox>
+                <br />
+                <label>NombreArea:</label>
+                <asp:TextBox ID="txtNombreArea" runat="server"></asp:TextBox>
+                <br />
+                <asp:Button ID="btnAdd" runat="server" Text="Agregar Área" OnClick="btnAdd_Click" />
+            </div>
+      
+
         <div>
             <h2>Áreas</h2>
             <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
@@ -43,18 +55,8 @@
                     <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
                 </Columns>
             </asp:GridView>
+  </div>
 
-            <div>
-                <h3>Agregar Área</h3>
-                <label>IdArea:</label>
-                <asp:TextBox ID="txtIdArea" runat="server"></asp:TextBox>
-                <br />
-                <label>NombreArea:</label>
-                <asp:TextBox ID="txtNombreArea" runat="server"></asp:TextBox>
-                <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Agregar Área" OnClick="btnAdd_Click" />
-            </div>
-        </div>
     </form>
 </body>
 </html>

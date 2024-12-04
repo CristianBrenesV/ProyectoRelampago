@@ -4,62 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Gestión de Procedimientos</title>
+        <link href="Content/Procedimiento.css" rel="stylesheet" type="text/css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-        }
-        h2 {
-            color: #333;
-        }
-        .form-container {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .form-container label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .form-container input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-container button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-        .grid-container {
-            margin-top: 30px;
-        }
-        .message {
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        .message.success {
-            color: green;
-        }
-        .message.error {
-            color: red;
-        }
-    </style>
 </head>
 <body>
 

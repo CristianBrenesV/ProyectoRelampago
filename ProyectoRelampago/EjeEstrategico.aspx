@@ -4,10 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Gestión de Ejes Estratégicos</title>
+        <link href="Content/EjeEstrategico.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -22,8 +23,22 @@
     </nav>
     <form id="form1" runat="server">
         <div>
+                        <!-- Formulario para agregar un nuevo Eje Estratégico -->
+            <div>
+                <h3>Agregar Eje Estratégico</h3>
+                <label>IdEje:</label>
+                <asp:TextBox ID="txtIdEje" runat="server"></asp:TextBox>
+                <br />
+                <label>NombreEjeEstrategico:</label>
+                <asp:TextBox ID="txtNombreEjeEstrategico" runat="server"></asp:TextBox>
+                <br />
+                <asp:Button ID="btnAdd" runat="server" Text="Agregar Eje Estratégico" OnClick="btnAdd_Click" />
+            </div>
+
             <h2>Ejes Estratégicos</h2>
             <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
+
+            <!-- GridView para mostrar, editar y eliminar Ejes Estratégicos -->
             <asp:GridView ID="gvEjesEstrategicos" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="10"
                 DataKeyNames="IdEje"
                 OnPageIndexChanging="gvEjesEstrategicos_PageIndexChanging"
@@ -42,17 +57,6 @@
                     <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
                 </Columns>
             </asp:GridView>
-
-            <div>
-                <h3>Agregar Eje Estratégico</h3>
-                <label>IdEje:</label>
-                <asp:TextBox ID="txtIdEje" runat="server"></asp:TextBox>
-                <br />
-                <label>NombreEjeEstrategico:</label>
-                <asp:TextBox ID="txtNombreEjeEstrategico" runat="server"></asp:TextBox>
-                <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Agregar Eje Estratégico" OnClick="btnAdd_Click" />
-            </div>
         </div>
     </form>
 </body>

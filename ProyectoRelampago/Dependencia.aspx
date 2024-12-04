@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Gestión de Dependencias</title>
+        <link href="Content/Dependencia.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -22,6 +23,18 @@
     </nav>
     <form id="form1" runat="server">
         <div>
+
+            <div>
+                <h3>Agregar Dependencia</h3>
+                <label>IdDependencia:</label>
+                <asp:TextBox ID="txtIdDependencia" runat="server"></asp:TextBox>
+                <br />
+                <label>NombreDependencia:</label>
+                <asp:TextBox ID="txtNombreDependencia" runat="server"></asp:TextBox>
+                <br />
+                <asp:Button ID="btnAdd" runat="server" Text="Agregar Dependencia" OnClick="btnAdd_Click" />
+            </div>
+
             <h2>Dependencias</h2>
             <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
             <asp:GridView ID="gvDependencias" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="10"
@@ -43,16 +56,7 @@
                 </Columns>
             </asp:GridView>
 
-            <div>
-                <h3>Agregar Dependencia</h3>
-                <label>IdDependencia:</label>
-                <asp:TextBox ID="txtIdDependencia" runat="server"></asp:TextBox>
-                <br />
-                <label>NombreDependencia:</label>
-                <asp:TextBox ID="txtNombreDependencia" runat="server"></asp:TextBox>
-                <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Agregar Dependencia" OnClick="btnAdd_Click" />
-            </div>
+           
         </div>
     </form>
 </body>
